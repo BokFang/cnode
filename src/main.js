@@ -8,12 +8,8 @@ import axios from 'axios'
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components:{ App },
-  template:`<App/>`,
-})
+
+
 Vue.filter('formatDate',(str)=>{
   if(!str) return''
   let date = new Date(str)
@@ -43,10 +39,15 @@ Vue.filter('formatType',(post)=>{
     return "置顶"
   }else if(post.tab == 'ask'){
     return "问答"
-  }else if(post.share == 'share'){
+  }else if(post.tab == 'share'){
     return "分享"
   }else{
     return "招聘"
   }
 })
-
+new Vue({
+  el: '#app',
+  router,
+  components:{ App },
+  template:`<App/>`,
+})

@@ -1,27 +1,39 @@
 <template>
   <div class="wrapper">
-    <ul>
-      <li class="main-header">
-        <span>全部</span>
-        <span>精华</span>
-        <span>分享</span>
-        <span>问答</span>
-        <span>招聘</span>
-        <span>客户端测试</span>
-      </li>
-      <li v-for="post in posts">
-        <a href="#" class="portrait"><img :src="post.author.avatar_url" class="portrait"></a> <!--动态绑定属性记得加:-->
-        <span class="count-wrapper">
-          <span class="reply-count">{{post.reply_count}}</span>
-          <span class="visit-count">/</span>
-          <span class="visit-count">{{post.visit_count}}</span>
-        </span>
-        <span :class="[{put_top:(post.top == true),put_good:(post.good == true),
-        put_tab:(post.top != true && post.good != true)}]">{{post | formatType}}</span>
-        <span class="title">{{post.title}}</span>
-        <span class="reply-time">{{post.last_reply_at | formatDate}}</span>
-      </li>
-    </ul>
+    <div class="loading" v-if="isLoading">
+      <img src="../assets/loading.gif" >
+    </div>
+    <div v-else>
+      <ul>
+        <li class="main-header">
+          <span>全部</span>
+          <span>精华</span>
+          <span>分享</span>
+          <span>问答</span>
+          <span>招聘</span>
+          <span>客户端测试</span>
+        </li>
+        <li v-for="post in posts">
+          <a href="#" class="portrait"><img :src="post.author.avatar_url" class="portrait"></a> <!--动态绑定属性记得加:-->
+          <span class="count-wrapper">
+            <span class="reply-count">{{post.reply_count}}</span>
+            <span class="visit-count">/</span>
+            <span class="visit-count">{{post.visit_count}}</span>
+          </span>
+          <span :class="[{put_top:(post.top == true),put_good:(post.good == true),
+          put_tab:(post.top != true && post.good != true)}]">{{post | formatType}}</span>
+          <router-link :to="{
+            name:'post_content',
+            params:{
+              id:post.id
+            }
+          }">
+            <span class="title">{{post.title}}</span>
+          </router-link>
+          <span class="reply-time">{{post.last_reply_at | formatDate}}</span>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -31,6 +43,7 @@
         data(){
           return{
             posts:[],
+            isLoading:true
           }
         },
         methods:{
@@ -38,6 +51,7 @@
                 this.$http.get('https://cnodejs.org/api/v1/topics')
                     .then((response)=>{
                       this.posts = response.data.data
+                      this.isLoading = false
                     }).catch((error)=>{
                         console.log(error)
                 })
@@ -50,6 +64,10 @@
 </script>
 
 <style scoped>
+  .loading {
+    text-align: center;
+    padding-top: 300px;
+  }
   a{
     text-decoration: none;
   }
@@ -106,6 +124,7 @@ li:not(:first-child){
   .title{
     display: inline-block;
     color:#333;
+    font-size: 16px;
   }
   .reply-time{
     float:right;

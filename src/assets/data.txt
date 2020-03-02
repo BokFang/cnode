@@ -1,0 +1,9 @@
+头像：data[0].author.avatar_url
+用户名：data[0].author.loginname
+回复数：data[0].reply_count
+点击数:data[0].visit_count
+置顶：top
+问答/分享/招聘：tab:ask/share/job
+精华：data[0].good
+文章标题：data[0].title
+回复时间：data[0].slast_reply_at

@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "github-markdown-css": "^4.0.0",
+    "mavon-editor": "^2.7.7",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
