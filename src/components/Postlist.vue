@@ -14,7 +14,14 @@
           <span>客户端测试</span>
         </li>
         <li v-for="post in posts">
-          <a href="#" class="portrait"><img :src="post.author.avatar_url" class="portrait"></a> <!--动态绑定属性记得加:-->
+          <router-link :to="{
+            name:'user_info',
+            params:{
+              id:post.id,
+              name:post.author.loginname
+            }
+          }"><img :src="post.author.avatar_url" class="portrait">
+          </router-link> <!--动态绑定属性记得加:-->
           <span class="count-wrapper">
             <span class="reply-count">{{post.reply_count}}</span>
             <span class="visit-count">/</span>

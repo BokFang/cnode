@@ -31,9 +31,18 @@
       <div class="reply-wrapper">
         <div class="reply-top">{{post.reply_count}}回复</div>
         <div class="reply-content" v-for="(reply,index) in post.replies">
-          <img :src="reply.author.avatar_url">
+          <router-link :to="{
+            name:'user_info',
+            params:{
+              id:reply.id,
+              name:reply.author.loginname
+            }
+          }">
+            <img class="author-photo" :src="reply.author.avatar_url">
+          </router-link>
           <span class="reply-name">{{reply.author.loginname}}</span>
           <span class="reply-time">{{index+1}}楼 • {{reply.create_at|formatDate}}</span>
+          <span class="praise" v-if="reply.ups.length>0">{{reply.ups.length}}👍</span>
           <div class="reply-text markdown-body" v-html="reply.content"></div>
         </div>
       </div>
@@ -131,7 +140,7 @@
     background-color: #f6f6f6;
     border-radius: 3px 3px 0 0;
   }
-  img{
+  .author-photo{
     width: 30px;
     height: 30px;
     border-radius: 3px;
@@ -156,5 +165,8 @@
   }
   .reply-text{
     padding-left: 50px;
+  }
+  .praise{
+    padding-left: 20px;
   }
 </style>
