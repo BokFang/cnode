@@ -4,7 +4,7 @@
       <img src="../assets/loading.gif" >
     </div>
     <div class="article-wrapper" v-else>
-      <div class="article-topic">
+      <div class="article-topic panel">
         <div class="article-header">
           <div class="topic-title-wrapper">
           <span :class="[{put_top:(post.top == true),put_good:(post.good == true),
@@ -28,7 +28,7 @@
         </div>
         <div v-html="post.content" class="inner-topic markdown-body"></div>
       </div>
-      <div class="reply-wrapper">
+      <div class="reply-wrapper panel">
         <div class="reply-top">{{post.reply_count}}回复</div>
         <div class="reply-content" v-for="(reply,index) in post.replies">
           <router-link :to="{
@@ -81,17 +81,18 @@
 
 <style >
   @import url('../assets/markdown-github.css');
-
+  .panel{
+    margin-right: 305px;
+  }
+  a:hover{
+    text-decoration: underline;
+  }
   .loading{
     text-align: center;
     padding-top: 300px;
   }
-  .article-wrapper{
-    width: 90%;
-    margin: 15px auto;
-  }
   .article-topic{
-    margin: 13px;
+    margin-bottom: 13px;
   }
   .article-header{
     padding: 10px;
@@ -126,17 +127,13 @@
     color: #838383;
   }
   .inner-topic{
-    padding: 10px;
+    padding: 10px 20px 10px 20px;
     border-top: 1px solid #e5e5e5;
     border-radius: 0 0 3px 3px;
     background-color: #fff;
   }
-  .reply-wrapper{
-    width: 100%;
-  }
   .reply-top{
     padding: 10px;
-    margin: 0 13px;
     background-color: #f6f6f6;
     border-radius: 3px 3px 0 0;
   }
@@ -151,7 +148,6 @@
     background: #fff;
     border-top: 1px solid #f0f0f0;
     padding: 10px;
-    margin:0 13px;
     font-size: 14px;
   }
   .reply-name{

@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <Header></Header>
-    <div class="main"></div>
-    <router-view name="main"></router-view>
+    <div class="main">
+      <router-view name="slidebar"></router-view>
+      <router-view name="main"></router-view>
+    </div>
   </div>
 </template>
 
@@ -21,7 +23,14 @@ export default {
     margin: 0;
     padding: 0;
   }
-  body{
+  body {
     background-color: #e1e1e1;
+  }
+  .main{
+    width: 90%;
+    max-width: 1400px;
+    min-width: 960px;
+    margin: 15px auto;
+    min-height: 400px;
   }
 </style>

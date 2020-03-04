@@ -29,9 +29,6 @@
         <ul>
           <li v-for="(create,index) in userInfo.recent_topics" v-if="index < 5" class="inner">
             <img :src="userInfo.avatar_url" class="user_avatar photo">
-            <span>
-              <span></span><span>/</span><span></span>
-            </span>
             <router-link :to="{
               name:'post_content',
               params:{
@@ -49,9 +46,6 @@
         <ul>
           <li v-for="(join,index) in userInfo.recent_replies" v-if="index < 5" class="inner">
             <img :src="join.author.avatar_url" class="user_avatar photo">
-            <span>
-              <span></span><span>/</span><span></span>
-            </span>
             <router-link :to="{
               name:'post_content',
               params:{
@@ -117,6 +111,7 @@
   }
 .panel{
   margin-bottom: 13px;
+  margin-right: 305px;
   }
   .header{
     padding: 10px;
@@ -177,6 +172,13 @@
   }
   .create-title,.join-title{
     color: #08c;
+    padding-left: 25px;
+  }
+  .create-title:hover{
+    text-decoration: underline;
+  }
+  .join-title:hover{
+    text-decoration: underline;
   }
   .last-create,.last-join{
     color:#777;

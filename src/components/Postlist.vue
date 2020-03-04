@@ -32,7 +32,8 @@
           <router-link :to="{
             name:'post_content',
             params:{
-              id:post.id
+              id:post.id,
+              name:post.author.loginname
             }
           }">
             <span class="title">{{post.title}}</span>
@@ -80,7 +81,6 @@
   }
   .wrapper{
     width: 90%;
-    margin: 15px auto;
   }
   .main-header{
     list-style: none;
@@ -132,6 +132,9 @@ li:not(:first-child){
     display: inline-block;
     color:#333;
     font-size: 16px;
+  }
+  .title:hover{
+    text-decoration: underline;
   }
   .reply-time{
     float:right;
