@@ -28,14 +28,14 @@
       <div class="inner">
         <ul>
           <li v-for="(create,index) in userinfo.recent_replies" v-if="index < 5">
-            <router-link :to="{
-              name:'post_content',
-              params:{
-                id:create.id
-              }
-            }">
-              <span class="create-title">{{create.title}}</span>
-            </router-link>
+              <router-link :to="{
+                name:'post_content',
+                params:{
+                  id:create.id
+                }
+              }">
+                <span class="create-title">{{create.title}}</span>
+              </router-link>
           </li>
         </ul>
       </div>
@@ -43,7 +43,18 @@
     <section class="sidebar-panel">
       <header class="header">作者参与的话题</header>
       <div class="inner">
-
+        <ul>
+          <li v-for="(join,index) in userinfo.recent_topics" v-if="index < 5">
+            <router-link :to="{
+              name:'post_content',
+              params:{
+                id:join.id
+              }
+            }">
+              <span class="create-title">{{join.title}}</span>
+            </router-link>
+          </li>
+        </ul>
       </div>
     </section>
   </div>
@@ -120,7 +131,7 @@
     font-size: 14px;
   }
   .inner li{
-    line-height: 2em;
+    height: 32px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -129,5 +140,8 @@
     font-size: 14px;
     color: #778087;
     line-height: 30px;
+  }
+  .create-title:hover{
+    text-decoration: underline;
   }
 </style>
