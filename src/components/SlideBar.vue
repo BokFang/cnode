@@ -24,7 +24,7 @@
       </div>
     </section>
     <section class="sidebar-panel">
-      <header class="header">作者创建的话题</header>
+      <header class="header">作者参与的话题</header>
       <div class="inner">
         <ul>
           <li v-for="(create,index) in userinfo.recent_replies" v-if="index < 5">
@@ -41,7 +41,7 @@
       </div>
     </section>
     <section class="sidebar-panel">
-      <header class="header">作者参与的话题</header>
+      <header class="header">作者创建的话题</header>
       <div class="inner">
         <ul>
           <li v-for="(join,index) in userinfo.recent_topics" v-if="index < 5">
@@ -134,12 +134,14 @@
     height: 32px;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #778087;
   }
   .create-title{
     max-width: 270px;
     font-size: 14px;
-    color: #778087;
     line-height: 30px;
+    white-space: nowrap;
+    color: #778087;
   }
   .create-title:hover{
     text-decoration: underline;

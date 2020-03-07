@@ -40,30 +40,43 @@
           </router-link>
           <span class="reply-time">{{post.last_reply_at | formatDate}}</span>
         </li>
+          <Pagination @handleList="renderList"></Pagination>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-    export default {
+  import Pagination from "./Pagination";
+  export default {
         name: "Postlist",
+      components:{Pagination},
         data(){
           return{
             posts:[],
-            isLoading:true
+            isLoading:true,
+            postpage:1
           }
         },
         methods:{
             getData(){
-                this.$http.get('https://cnodejs.org/api/v1/topics')
+                this.$http.get('https://cnodejs.org/api/v1/topics',{
+                  params:{
+                    page:this.postpage,
+                    limit:30
+                  }
+                })
                     .then((response)=>{
                       this.posts = response.data.data
                       this.isLoading = false
                     }).catch((error)=>{
                         console.log(error)
                 })
-            }
+            },
+          renderList(value){
+              this.postpage = value
+            this.getData()
+          }
         },
         beforeMount() {
             this.getData()
@@ -75,12 +88,10 @@
   .loading {
     text-align: center;
     padding-top: 300px;
+    padding-bottom: 600px;
   }
   a{
     text-decoration: none;
-  }
-  .wrapper{
-    width: 90%;
   }
   .main-header{
     list-style: none;
@@ -132,6 +143,9 @@ li:not(:first-child){
     display: inline-block;
     color:#333;
     font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
   }
   .title:hover{
     text-decoration: underline;
